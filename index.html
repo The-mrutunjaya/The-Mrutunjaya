@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Helix - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container" id="auth-container">
+    <div class="card" id="login-form">
+        <h2 class="title">The Helix</h2>
+        <input type="text" id="login-username" placeholder="Username" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <p class="toggle">Don't have an account? <span onclick="toggleForms()">Sign Up</span></p>
+    </div>
+
+    <div class="card hidden" id="signup-form">
+        <h2 class="title">Sign Up</h2>
+        <input type="text" id="signup-username" placeholder="Username" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <button onclick="signup()">Sign Up</button>
+    </div>
+</div>
+
+<div class="dashboard hidden" id="dashboard">
+    <aside class="sidebar">
+        <h2>The Helix</h2>
+        <ul>
+            <li>Home</li>
+            <li>Biotech Notes</li>
+            <li>Resources</li>
+            <li>Contact</li>
+        </ul>
+        <div class="user-info">Logged in as: <span id="username-display"></span></div>
+    </aside>
+    <main class="main-content">
+        <h1>Welcome to The Helix</h1>
+        <p>Explore the biotechnology world with curated notes and tools.</p>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
