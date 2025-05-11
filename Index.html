@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Hosted Dashboard</title>
+    <style>
+        /* Previous CSS remains the same */
+        /* Add this new style */
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Authentication and Dashboard sections remain the same -->
+
+    <script>
+        // Updated Google Sheets Integration
+        const scriptURL = 'YOUR_APPS_SCRIPT_DEPLOYMENT_URL';
+
+        // Signup Handler
+        document.getElementById('signup').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button');
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: new URLSearchParams({
+                        email: document.getElementById('signupEmail').value,
+                        password: document.getElementById('signupPassword').value,
+                        action: 'signup'
+                    })
+                });
+
+                alert('Signup successful! Please login.');
+                document.getElementById('signupForm').style.display = 'none';
+                document.getElementById('loginForm').style.display = 'block';
+            } catch (error) {
+                alert('Error in signup. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Login Handler
+        document.getElementById('login').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button');
+            submitBtn.disabled = true;
+
+            try {
+                // Verify credentials
+                const response = await fetch(`${scriptURL}?action=login&email=${encodeURIComponent(loginEmail.value)}`);
+                const data = await response.json();
+
+                if(data.valid) {
+                    showDashboard(loginEmail.value);
+                } else {
+                    alert('Invalid credentials');
+                }
+            } catch (error) {
+                alert('Login failed. Please try again.');
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+
+        function showDashboard(email) {
+            document.querySelector('.auth-container').style.display = 'none';
+            document.querySelector('.dashboard').style.display = 'block';
+            document.getElementById('usernameDisplay').textContent = `User: ${email}`;
+        }
+    </script>
+</body>
+</html>
