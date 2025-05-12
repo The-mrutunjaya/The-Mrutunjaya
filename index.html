@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - The Helix</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>Login to The Helix</h1>
+    <input type="text" id="login-username" placeholder="Username"/>
+    <input type="password" id="login-password" placeholder="Password"/>
+    <div class="show-hide">
+      <input type="checkbox" onclick="togglePassword('login-password')"/> Show Password
+    </div>
+    <button onclick="login()">Login</button>
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
