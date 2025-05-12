@@ -1,49 +1,42 @@
-let users = JSON.parse(localStorage.getItem('users')) || {};
-
-window.onload = () => {
-    const currentUser = localStorage.getItem('currentUser');
-    if (currentUser) {
-        showDashboard(currentUser);
-    }
-};
-
-function showLogin() {
-    document.getElementById('login-form').classList.remove('hidden');
-    document.getElementById('signup-form').classList.add('hidden');
+function showSignup() {
+  document.getElementById('login-form').classList.add('hidden');
+  document.getElementById('signup-form').classList.remove('hidden');
 }
 
-function showSignup() {
-    document.getElementById('signup-form').classList.remove('hidden');
-    document.getElementById('login-form').classList.add('hidden');
+function showLogin() {
+  document.getElementById('signup-form').classList.add('hidden');
+  document.getElementById('login-form').classList.remove('hidden');
 }
 
 function login() {
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
-    if (users[username] && users[username] === password) {
-        localStorage.setItem('currentUser', username);
-        showDashboard(username);
-    } else {
-        alert("Invalid username or password.");
-    }
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
+  const stored = JSON.parse(localStorage.getItem(username));
+  if (stored && stored.password === password) {
+    localStorage.setItem('loggedInUser', username);
+    showDashboard(username);
+  } else {
+    alert("Incorrect credentials.");
+  }
 }
 
 function signup() {
-    const username = document.getElementById('signup-username').value;
-    const password = document.getElementById('signup-password').value;
-    if (username && password) {
-        users[username] = password;
-        localStorage.setItem('users', JSON.stringify(users));
-        alert("Signup successful! Please login.");
-        showLogin();
-        document.getElementById('login-username').value = username;
-    } else {
-        alert("Please fill all fields.");
-    }
+  const username = document.getElementById('signup-username').value;
+  const password = document.getElementById('signup-password').value;
+  localStorage.setItem(username, JSON.stringify({ password }));
+  alert("Signup successful! Now you can log in.");
+  showLogin();
 }
 
 function showDashboard(username) {
-    document.getElementById('auth-container').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-    document.getElementById('username-display').textContent = username;
+  document.getElementById('auth-container').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('username-display').textContent = username;
 }
+
+window.onload = function () {
+  const user = localStorage.getItem('loggedInUser');
+  if (user) {
+    showDashboard(user);
+  }
+};
