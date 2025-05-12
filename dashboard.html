@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Helix - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li>Tool 1</li>
+      <li>Tool 2</li>
+      <li>Topic 1</li>
+      <li>Topic 2</li>
+    </ul>
+    <div class="user-display" id="user-display"></div>
+  </div>
+  <div class="main-content">
+    <h1>Welcome to The Helix Dashboard</h1>
+    <p>This is your main workspace.</p>
+  </div>
+  <script>
+    const username = localStorage.getItem("username");
+    if (!username) window.location.href = "login.html";
+    document.getElementById("user-display").textContent = "Logged in as " + username;
+  </script>
+</body>
+</html>
