@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Helix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth-container">
+        <div id="login-form">
+            <h2>Login</h2>
+            <input type="text" id="login-username" placeholder="Username">
+            <input type="password" id="login-password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <button onclick="showSignup()">Sign Up</button></p>
+        </div>
+
+        <div id="signup-form" class="hidden">
+            <h2>Sign Up</h2>
+            <input type="text" id="signup-username" placeholder="Username">
+            <input type="password" id="signup-password" placeholder="Password">
+            <button onclick="signup()">Sign Up</button>
+            <p>Already have an account? <button onclick="showLogin()">Login</button></p>
+        </div>
+    </div>
+
+    <div id="dashboard" class="hidden">
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+            <div class="footer">
+                <p>User: <span id="username-display"></span></p>
+            </div>
+        </div>
+        <div class="main">
+            <h1>Welcome to The Helix Dashboard</h1>
+            <p>This is your dashboard content.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+input, button {
+    display: block;
+    margin: 10px 0;
+    padding: 8px;
+    width: 200px;
+}
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #555;
+}
+.hidden {
+    display: none;
+}
+#auth-container {
+    text-align: center;
+    margin-top: 100px;
+}
+#dashboard {
+    display: flex;
+}
+.sidebar {
+    width: 200px;
+    background: #eee;
+    padding: 20px;
+}
+.main {
+    flex-grow: 1;
+    padding: 20px;
+}
